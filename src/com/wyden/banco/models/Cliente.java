@@ -1,15 +1,24 @@
 package com.wyden.banco.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Cliente {
 
+	private String cpf;
 	private String nome;
-	private String fone;
-	private List<ContaCorrente> contas_correntes;
+	private List<ContaCorrente> contas;
 
 	public Cliente() {
+		contas = new ArrayList<>();
+	}
 
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 	public String getNome() {
@@ -20,20 +29,12 @@ public class Cliente {
 		this.nome = nome;
 	}
 
-	public String getFone() {
-		return fone;
+	public List<ContaCorrente> getContas() {
+		return contas;
 	}
 
-	public void setFone(String fone) {
-		this.fone = fone;
-	}
-
-	public List<ContaCorrente> getContas_correntes() {
-		return contas_correntes;
-	}
-
-	public void setContas_correntes(List<ContaCorrente> contas_correntes) {
-		this.contas_correntes = contas_correntes;
+	public void setContas(List<ContaCorrente> contas) {
+		this.contas = contas;
 	}
 
 }

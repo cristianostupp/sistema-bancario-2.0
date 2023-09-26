@@ -1,29 +1,11 @@
 package com.wyden.banco.models;
 
-public class ContaCorrente {
+public class ContaCorrente extends Conta {
 
-	private String numero;
-	private double saldo;
 	private float tarifa;
 
 	public ContaCorrente() {
 
-	}
-
-	public String getNumero() {
-		return numero;
-	}
-
-	public void setNumero(String numero) {
-		this.numero = numero;
-	}
-
-	public double getSaldo() {
-		return saldo;
-	}
-
-	public void setSaldo(double saldo) {
-		this.saldo = saldo;
 	}
 
 	public float getTarifa() {
