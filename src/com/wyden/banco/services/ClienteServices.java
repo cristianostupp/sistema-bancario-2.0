@@ -9,11 +9,10 @@ import com.wyden.banco.models.ContaCorrente;
 public class ClienteServices {
 
 	static Scanner scanner = new Scanner(System.in);
-	
+
 	public static void criar(HashMap<String, Cliente> clientes) {
 
 		Cliente objCliente = new Cliente();
-		
 
 		System.out.print("CPF do cliente: ");
 		objCliente.setCpf(scanner.nextLine());
@@ -26,40 +25,39 @@ public class ClienteServices {
 
 		if (decisao.equals("s")) {
 
-			ContaCorrente objContaCorrente = new ContaCorrente();
+			ContaCorrente objContaCorrente = ContaCorrenteServices.criar();
 
-			System.out.print("Número da conta: ");
-			objContaCorrente.setNumero(scanner.nextLine());
-
-			System.out.print("Saldo inicial da conta: ");
-			objContaCorrente.setSaldo(scanner.nextDouble());
-
-			System.out.print("Tarifa bancária da conta: ");
-			objContaCorrente.setTarifa(scanner.nextFloat());
-
-			objCliente.getContas().add(objContaCorrente);
+			if ( objContaCorrente != null )
+				objCliente.getContas().add(objContaCorrente);
 
 		}
 
 		/*
-		 * coloca o objeto cliente na HashMap (uma tabela) usando CPF como chave para
-		 * recuperar o objeto cliente
+		 * coloca o objeto cliente na HashMap (uma lista indexada por chaves) 
+		 * usando CPF como chave para recuperar o objeto cliente
 		 */
 		clientes.put(objCliente.getCpf(), objCliente);
 
 	}
 
-	public static void ler(HashMap<String, Cliente> clientes) {
+	public static Cliente ler(HashMap<String, Cliente> clientes) {
+
+		Cliente objCliente;
 		
 		System.out.print("CPF do cliente: ");
 		String cpf = scanner.nextLine();
-		Cliente objCliente = clientes.get(cpf);
 		
-		if ( objCliente != null )
+		if (clientes.containsKey(cpf)) {
+			objCliente = clientes.get(cpf);
 			System.out.println("Cliente: " + objCliente.getNome() + "\n");
-		else
-			System.out.println("Cliente não cadatrado!\n" );
+			ContaCorrenteServices.listarContasDeUmCliente(objCliente);
+		} else {
+			System.out.println("Cliente não cadatrado!\n");
+			objCliente = null;
+		}
 		
+		return objCliente;
+
 	}
 
 	public static void atualizar(HashMap<String, Cliente> clientes) {

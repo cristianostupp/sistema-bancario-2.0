@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import com.wyden.banco.models.Cliente;
 import com.wyden.banco.services.ClienteServices;
+import com.wyden.banco.services.ContaCorrenteServices;
 
 public class MainApp {
 
@@ -25,7 +26,7 @@ public class MainApp {
 				ClienteServices.ler(clientes);
 				break;
 			case 3:
-				System.out.println("Colocar aqui rotina para criar uma conta corrente.");
+				ContaCorrenteServices.criar(clientes);
 				break;
 			case 4:
 				System.out.println("Colocar aqui rotina para consultar uma conta corrente.");
@@ -36,7 +37,6 @@ public class MainApp {
 			case 6:
 				System.out.println("Colocar aqui rotina para sacar.");
 				break;
-
 			case 9:
 				System.out.println("\nFim de programa\n");
 				break;
@@ -52,9 +52,8 @@ public class MainApp {
 	public static int menuPrincipal() {
 
 		Scanner scanner = new Scanner(System.in);
-		int opt;
-
-		System.out.println("Escolha a opcao:");
+		
+		System.out.println("\n\nEscolha a opcao:");
 		System.out.println("1. Criar um cliente");
 		System.out.println("2. Consultar um cliente");
 		System.out.println("3. Criar uma conta corrente");
@@ -62,8 +61,10 @@ public class MainApp {
 		System.out.println("5. Depositar");
 		System.out.println("6. Sacar");
 		System.out.println("9. Sair");
+		
 		System.out.print("Opcao: ");
-		opt = scanner.nextInt();
+		
+		int opt = scanner.nextInt();
 
 		return opt;
 
